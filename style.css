@@ -109,6 +109,13 @@ h1 {
     font-size: 1.05em;
 }
 
+.table-row.header .component,
+.table-row.header .value,
+.table-row.header .comments {
+  color: #fff;
+  font-weight: 600;
+}
+
 .table-row.header .value {
     text-align: center;
 }
