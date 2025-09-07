@@ -11,9 +11,16 @@
         <h1>Material Cost Calculation</h1>
 
         <div class="input-section">
-            <label for="weight">ETP Weight:</label>
-            <input type="number" id="weight" value="26000" min="0" step="1" placeholder="Enter weight">
-        </div>
+    <label for="mode-selector">Select Mode:</label>
+    <select id="mode-selector">
+        <option value="etp">ETP</option>
+        <option value="stripper">Stripper</option>
+    </select>
+
+    <label for="weight">ETP Weight:</label>
+    <input type="number" id="weight" value="26000" min="0" step="1" placeholder="Enter weight">
+</div>
+
 
         <div class="results-table">
             <div class="table-row header">
