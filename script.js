@@ -1,74 +1,112 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const weightInput = document.getElementById('weight');
+// Add event listener for input changes
+weightInput.addEventListener('input', calculateCosts);
 
-    // Constants based on your table
-    const HETERO_MATERIAL_RATE = 18.00;
-    const CUSTOMS_TAX_PERCENTAGE = 0.11; // 11%
-    const GST_PERCENTAGE = 0.18;       // 18%
-    const TCS_PERCENTAGE = 0.01;       // 1%
-    const PCB_CHARGES = 2.00;
-    const APEMCL_CHARGES = 0.07;
+// Add event listener for dropdown changes
+dropdownInput.addEventListener('change', calculateCosts);
 
-    const formatNumber = (num) => num.toFixed(2); // Format to 2 decimal places
+// Initial calculation when the page loads
+calculateCosts();
 
-    const calculateCosts = () => {
-        let weight = parseFloat(weightInput.value);
+function calculateCosts() {
+  const selectedValue = dropdownInput.value;
+  const weight = parseFloat(weightInput.value);
 
-        if (isNaN(weight) || weight < 0) {
-            weight = 0; // Default to 0 or handle error appropriately
-        }
+  if (selectedValue === 'ETP') {
+    // ETP calculations
+    const etpCost = weight * 100;
+    const gst = etpCost * 0.18;
+    const tcs = etpCost * 0.01;
+    const totalCost = etpCost + gst + tcs;
 
-        // Display ETP Weight
-        document.getElementById('display-etp-weight').textContent = formatNumber(weight);
+    // Update the results table
+    resultsTable.innerHTML = `
+      <div class="table-row header">
+        <div>Component</div>
+        <div>Value</div>
+      </div>
+      <div class="table-row">
+        <div>ETP Cost</div>
+        <div>${etpCost.toFixed(2)}</div>
+      </div>
+      <div class="table-row">
+        <div>GST</div>
+        <div>${gst.toFixed(2)}</div>
+      </div>
+      <div class="table-row">
+        <div>TCS</div>
+        <div>${tcs.toFixed(2)}</div>
+      </div>
+      <div class="table-row">
+        <div>Total Cost</div>
+        <div>${totalCost.toFixed(2)}</div>
+      </div>
+    `;
+  } else if (selectedValue === 'Stripper') {
+    // Stripper calculations
+    const stripperWeight = 25000;
+    const heteroMaterialRate = 4.00;
+    const materialPriceHetero = stripperWeight * heteroMaterialRate;
+    const gst = materialPriceHetero * 0.18;
+    const tcs = (materialPriceHetero + gst) * 0.01;
+    const genetiqueToHetero = tcs + materialPriceHetero + gst;
+    const pcbCharges = 1.00;
+    const heteroMaterialRatePcb = heteroMaterialRate + pcbCharges;
+    const apemclCharges = 0.07;
+    const genetiqueMaterialCost = heteroMaterialRatePcb + apemclCharges;
+    const materialPriceGenetique = genetiqueMaterialCost * stripperWeight;
+    const gstGenetique = materialPriceGenetique * 0.18;
+    const vpcsToGentique = materialPriceGenetique + gstGenetique;
 
-        // Customs Tax
-        const customsTax = HETERO_MATERIAL_RATE * CUSTOMS_TAX_PERCENTAGE;
-        document.getElementById('display-customs-tax').textContent = formatNumber(customsTax);
-
-        // Material cost (Hetero rate + Customs tax)
-        const materialCost = HETERO_MATERIAL_RATE + customsTax;
-        document.getElementById('display-material-cost').textContent = formatNumber(materialCost);
-
-        // Material Price @Hetero (Material cost * Weight)
-        const materialPriceHetero = materialCost * weight;
-        document.getElementById('display-material-price-hetero').textContent = formatNumber(materialPriceHetero);
-
-        // GST (18% of Material Price @ Hetero)
-        const gstHetero = materialPriceHetero * GST_PERCENTAGE;
-        document.getElementById('display-gst-hetero').textContent = formatNumber(gstHetero);
-
-        // Material price+GST (Sum of Material Price @ Hetero and GST)
-        const materialPriceGst = materialPriceHetero + gstHetero;
-        document.getElementById('display-material-price-gst').textContent = formatNumber(materialPriceGst);
-
-        // TCS (1% of (Material price+GST))
-        const tcs = materialPriceGst * TCS_PERCENTAGE;
-        document.getElementById('display-tcs').textContent = formatNumber(tcs);
-
-        // Genetique to Hetero (Material price+GST+TCS)
-        const genetiqueToHetero = materialPriceGst + tcs;
-        document.getElementById('display-genetique-to-hetero').textContent = formatNumber(genetiqueToHetero);
-
-        // Genetique material cost (Hetero rate + Customs tax + PCB charges + MPCL Charges)
-        const genetiqueMaterialCost = HETERO_MATERIAL_RATE + customsTax + PCB_CHARGES + APEMCL_CHARGES;
-        document.getElementById('display-genetique-material-cost').textContent = formatNumber(genetiqueMaterialCost);
-
-        // Material Price @ Genetique (Genetique material cost * Weight)
-        const materialPriceGenetique = genetiqueMaterialCost * weight;
-        document.getElementById('display-material-price-genetique').textContent = formatNumber(materialPriceGenetique);
-
-        // GST (18% of Material price @Genetique)
-        const gstGenetique = materialPriceGenetique * GST_PERCENTAGE;
-        document.getElementById('display-gst-genetique').textContent = formatNumber(gstGenetique);
-
-        // VPCS to Genetique (Material Price @ Genetique + GST)
-        const vpcsToGenetique = materialPriceGenetique + gstGenetique;
-        document.getElementById('display-vpcs-to-genetique').textContent = formatNumber(vpcsToGenetique);
-    };
-
-    // Add event listener for input changes
-    weightInput.addEventListener('input', calculateCosts);
-
-    // Initial calculation when the page loads
-    calculateCosts();
-});
+    // Update the results table
+    resultsTable.innerHTML = `
+      <div class="table-row header">
+        <div>Component</div>
+        <div>Value</div>
+      </div>
+      <div class="table-row">
+        <div>Stripper Weight</div>
+        <div>${stripperWeight}</div>
+      </div>
+      <div class="table-row">
+        <div>Hetero material Rate</div>
+        <div>${heteroMaterialRate}</div>
+      </div>
+      <div class="table-row">
+        <div>Material price @Hetero</div>
+        <div>${materialPriceHetero.toFixed(2)}</div>
+      </div>
+      <div class="table-row">
+        <div>GST</div>
+        <div>${gst.toFixed(2)}</div>
+      </div>
+      <div class="table-row">
+        <div>Material price+GST</div>
+        <div>${(materialPriceHetero + gst).toFixed(2)}</div>
+      </div>
+      <div class="table-row">
+        <div>TCS</div>
+        <div>${tcs.toFixed(2)}</div>
+      </div>
+      <div class="table-row">
+        <div>Genetique to Hetero</div>
+        <div>${genetiqueToHetero.toFixed(2)}</div>
+      </div>
+      <div class="table-row">
+        <div>PCB charges</div>
+        <div>${pcbCharges}</div>
+      </div>
+      <div class="table-row">
+        <div>Hetero material Rate+PCB</div>
+        <div>${heteroMaterialRatePcb.toFixed(2)}</div>
+      </div>
+      <div class="table-row">
+        <div>APEMCL charges</div>
+        <div>${apemclCharges}</div>
+      </div>
+      <div class="table-row">
+        <div>Genetique material cost</div>
+        <div>${genetiqueMaterialCost.toFixed(2)}</div>
+      </div>
+      <div class="table-row">
+        <div>Material Price @ Genetique</div>
+       
