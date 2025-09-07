@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let CUSTOMS_TAX_PERCENTAGE;
         let PCB_CHARGES;
         let APEMCL_CHARGES;
+        let STRIPPER_HETERO_RATE;
 
         if (mode === 'etp') {
             HETERO_MATERIAL_RATE = 18.00;
@@ -72,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             CUSTOMS_TAX_PERCENTAGE = 0.00;
             APEMCL_CHARGES = 0.07;
             const heteroRateEl = document.getElementById('display-hetero-rate');
-            heteroRateEl.textContent = formatNumber(HETERO_MATERIAL_RATE);
+            heteroRateEl.textContent = formatNumber(STRIPPER_HETERO_RATE);
 
             document.getElementById('display-etp-weight').textContent = formatNumber(weight);
 
