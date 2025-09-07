@@ -103,7 +103,7 @@ h1 {
 
 .table-row.header {
     background-color: var(--header-bg);
-    color: var(--text-light);
+    color: #fff; /* Changed font color to white for headings */
     font-weight: 600;
     font-size: 1.05em;
 }
@@ -125,12 +125,12 @@ h1 {
     text-align: right;
     font-family: 'Roboto Mono', monospace; /* Monospaced font for values */
     font-size: 1em;
-    color: #fff; /* Changed font color to white */
+    color: #333; /* Changed font color to black for values */
 }
 
 .table-row .comments {
     font-size: 0.9em;
-    color: #fff; /* Changed font color to white */
+    color: #333; /* Changed font color to black for comments */
 }
 
 /* Specific styling for the 'Value' column to ensure right alignment */
