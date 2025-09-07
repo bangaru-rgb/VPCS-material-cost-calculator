@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const vpcsToGenetique = materialPriceGenetique + gstGenetique;
             document.getElementById('display-vpcs-to-genetique').textContent = formatNumber(vpcsToGenetique);
         } else if (mode === 'stripper') {
-    weight = 23000; // Corrected weight
+    //weight = 23000; // Corrected weight
 
     const STRIPPER_HETERO_RATE = 4.00;
     const PCB_CHARGES = 1.00;

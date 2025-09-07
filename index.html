@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,20 +10,23 @@
     <!-- Responsive tweaks -->
     <link rel="stylesheet" href="responsive.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Material Cost Calculation</h1>
 
         <div class="input-section">
-    <label for="mode-selector">Material:</label>
-    <select id="mode-selector" style="width: 100%; padding: 8px; font-size: 1rem;">
-        <option value="etp">ETP</option>
-        <option value="stripper">Stripper</option>
-    </select>
+            <label for="mode-selector">Material:</label>
+            <select id="mode-selector" style="width: 100%; padding: 8px; font-size: 1rem;">
+                <option value="" disabled selected>Select</option>
+                <option value="etp">ETP</option>
+                <option value="stripper">Stripper</option>
+            </select>
 
-    <label for="weight">Weight:</label>
-    <input type="number" id="weight" value="26000" min="0" step="1" placeholder="Enter weight" style="width: 100%; padding: 8px; font-size: 1rem;">
-</div>
+            <label for="weight">Weight:</label>
+            <input type="number" id="weight" value="26000" min="0" step="1" placeholder="Enter weight"
+                style="width: 100%; padding: 8px; font-size: 1rem;">
+        </div>
 
 
 
@@ -35,7 +39,7 @@
             </div>
 
             <div class="table-row">
-                <div class="component">ETP Weight</div>
+                <div class="component">Total Weight</div>
                 <div class="value" id="display-etp-weight"></div>
                 <div class="comments">Total weight of the material.</div>
             </div>
@@ -128,4 +132,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
