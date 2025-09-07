@@ -7,6 +7,16 @@
     <title>Material Cost Calculator</title>
     <link rel="stylesheet" href="style.css">
 
+    <style>
+        input[type="number"],
+        select {
+            height: 40px;
+            padding: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+    </style>
+
     <!-- Responsive tweaks -->
     <link rel="stylesheet" href="responsive.css">
 </head>
@@ -18,9 +28,10 @@
         <div class="input-section">
             <label for="mode-selector">Material:</label>
             <select id="mode-selector" style="width: 100%; padding: 8px; font-size: 1rem;">
-                <option value="" disabled selected>Select</option>
+                <option value="select">Select</option>
                 <option value="etp">ETP</option>
                 <option value="stripper">Stripper</option>
+
             </select>
 
             <label for="weight">Weight:</label>
