@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VPCS Calculator</title>
+  <style>
+    table { border-collapse: collapse; width: 70%; margin: 20px auto; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .highlight { background-color: #ffe699; font-weight: bold; }
+    input { width: 100px; }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">VPCS Calculator</h2>
+
+  <div style="text-align:center;">
+    <label>ETP Weight: </label>
+    <input type="number" id="weight" value="26300">
+    <label>PCB Charges: </label>
+    <input type="number" id="pcb" value="2">
+    <button onclick="calculate()">Calculate</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Component</th><th>Value</th><th>Comments</th></tr>
+    </thead>
+    <tbody id="result"></tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
