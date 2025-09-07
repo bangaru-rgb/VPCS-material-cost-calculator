@@ -1,10 +1,4 @@
 /* === Custom Mobile resonsive Styles for Material Calculator === */
-/* .results-table .table-row .component,
-.results-table .table-row .value,
-.results-table .table-row .comments {
-  color: white;
-} */
-
 
 .input-section {
     display: flex;
@@ -50,10 +44,6 @@
     }
 
     /* Add this near your table styles */
-.results-table .table-row .component,
-.results-table .table-row .value,
-.results-table .table-row .comments {
-  color: white;
-}
+
 
 }
