@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let CUSTOMS_TAX_PERCENTAGE;
         let PCB_CHARGES;
         let APEMCL_CHARGES;
-        let STRIPPER_HETERO_RATE;
+        //let STRIPPER_HETERO_RATE;
 
         if (mode === 'etp') {
             HETERO_MATERIAL_RATE = 18.00;
@@ -68,16 +68,16 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (mode === 'stripper') {
             //weight = 23000; // Corrected weight
 
-            STRIPPER_HETERO_RATE = 4.00;
+            HETERO_MATERIAL_RATE = 4.00;
             PCB_CHARGES = 1.00;
             CUSTOMS_TAX_PERCENTAGE = 0.00;
             APEMCL_CHARGES = 0.07;
             const heteroRateEl = document.getElementById('display-hetero-rate');
-            heteroRateEl.textContent = formatNumber(STRIPPER_HETERO_RATE);
+            heteroRateEl.textContent = formatNumber(HETERO_MATERIAL_RATE);
 
             document.getElementById('display-etp-weight').textContent = formatNumber(weight);
 
-            const materialPriceHetero = STRIPPER_HETERO_RATE * weight;
+            const materialPriceHetero = HETERO_MATERIAL_RATE * weight;
             document.getElementById('display-material-price-hetero').textContent = formatNumber(materialPriceHetero);
 
             const gstHetero = materialPriceHetero * GST_PERCENTAGE;
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const genetiqueToHetero = materialPriceGst + tcs;
             document.getElementById('display-genetique-to-hetero').textContent = formatNumber(genetiqueToHetero);
 
-            const heteroPlusPCB = STRIPPER_HETERO_RATE + PCB_CHARGES;
+            const heteroPlusPCB = HETERO_MATERIAL_RATE + PCB_CHARGES;
             document.getElementById('display-material-cost').textContent = formatNumber(heteroPlusPCB);
 
             const genetiqueMaterialCost = heteroPlusPCB + APEMCL_CHARGES;
