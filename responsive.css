@@ -17,10 +17,10 @@
   color: inherit;
 }
 
-@keyframes fadeIn {
+/* @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-4px); }
   to { opacity: 1; transform: translateY(0); }
-}
+} */
 /* === Table Header Styling === */
 
 @media (max-width: 600px) {
