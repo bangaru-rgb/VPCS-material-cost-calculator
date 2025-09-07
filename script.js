@@ -7,23 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const GST_PERCENTAGE = 0.18;
     const TCS_PERCENTAGE = 0.01;
 
+
     const calculateCosts = () => {
         const mode = modeSelector.value;
         let weight = parseFloat(weightInput.value);
 
-        if (mode === 'stripper') {
-            weight = 25000; // Fixed weight for Stripper
-        }
-
         if (isNaN(weight) || weight < 0) {
             weight = 0;
         }
+        // Define rates based on mode
+        let HETERO_MATERIAL_RATE;
+        let CUSTOMS_TAX_PERCENTAGE;
+        let PCB_CHARGES;
+        let APEMCL_CHARGES;
 
         if (mode === 'etp') {
-            const HETERO_MATERIAL_RATE = 18.00;
-            const CUSTOMS_TAX_PERCENTAGE = 0.11;
-            const PCB_CHARGES = 2.00;
-            const APEMCL_CHARGES = 0.07;
+            HETERO_MATERIAL_RATE = 18.00;
+            CUSTOMS_TAX_PERCENTAGE = 0.11;
+            PCB_CHARGES = 2.00;
+            APEMCL_CHARGES = 0.07;
+            const heteroRateEl = document.getElementById('display-hetero-rate');
+            heteroRateEl.textContent = formatNumber(HETERO_MATERIAL_RATE);
+
 
             document.getElementById('display-etp-weight').textContent = formatNumber(weight);
 
@@ -60,46 +65,49 @@ document.addEventListener('DOMContentLoaded', () => {
             const vpcsToGenetique = materialPriceGenetique + gstGenetique;
             document.getElementById('display-vpcs-to-genetique').textContent = formatNumber(vpcsToGenetique);
         } else if (mode === 'stripper') {
-    //weight = 23000; // Corrected weight
+            //weight = 23000; // Corrected weight
 
-    const STRIPPER_HETERO_RATE = 4.00;
-    const PCB_CHARGES = 1.00;
-    const APEMCL_CHARGES = 0.07;
+            STRIPPER_HETERO_RATE = 4.00;
+            PCB_CHARGES = 1.00;
+            CUSTOMS_TAX_PERCENTAGE = 0.00;
+            APEMCL_CHARGES = 0.07;
+            const heteroRateEl = document.getElementById('display-hetero-rate');
+            heteroRateEl.textContent = formatNumber(HETERO_MATERIAL_RATE);
 
-    document.getElementById('display-etp-weight').textContent = formatNumber(weight);
+            document.getElementById('display-etp-weight').textContent = formatNumber(weight);
 
-    const materialPriceHetero = STRIPPER_HETERO_RATE * weight;
-    document.getElementById('display-material-price-hetero').textContent = formatNumber(materialPriceHetero);
+            const materialPriceHetero = STRIPPER_HETERO_RATE * weight;
+            document.getElementById('display-material-price-hetero').textContent = formatNumber(materialPriceHetero);
 
-    const gstHetero = materialPriceHetero * GST_PERCENTAGE;
-    document.getElementById('display-gst-hetero').textContent = formatNumber(gstHetero);
+            const gstHetero = materialPriceHetero * GST_PERCENTAGE;
+            document.getElementById('display-gst-hetero').textContent = formatNumber(gstHetero);
 
-    const materialPriceGst = materialPriceHetero + gstHetero;
-    document.getElementById('display-material-price-gst').textContent = formatNumber(materialPriceGst);
+            const materialPriceGst = materialPriceHetero + gstHetero;
+            document.getElementById('display-material-price-gst').textContent = formatNumber(materialPriceGst);
 
-    const tcs = materialPriceGst * TCS_PERCENTAGE;
-    document.getElementById('display-tcs').textContent = formatNumber(tcs);
+            const tcs = materialPriceGst * TCS_PERCENTAGE;
+            document.getElementById('display-tcs').textContent = formatNumber(tcs);
 
-    const genetiqueToHetero = materialPriceGst + tcs;
-    document.getElementById('display-genetique-to-hetero').textContent = formatNumber(genetiqueToHetero);
+            const genetiqueToHetero = materialPriceGst + tcs;
+            document.getElementById('display-genetique-to-hetero').textContent = formatNumber(genetiqueToHetero);
 
-    const heteroPlusPCB = STRIPPER_HETERO_RATE + PCB_CHARGES;
-    document.getElementById('display-material-cost').textContent = formatNumber(heteroPlusPCB);
+            const heteroPlusPCB = STRIPPER_HETERO_RATE + PCB_CHARGES;
+            document.getElementById('display-material-cost').textContent = formatNumber(heteroPlusPCB);
 
-    const genetiqueMaterialCost = heteroPlusPCB + APEMCL_CHARGES;
-    document.getElementById('display-genetique-material-cost').textContent = formatNumber(genetiqueMaterialCost);
+            const genetiqueMaterialCost = heteroPlusPCB + APEMCL_CHARGES;
+            document.getElementById('display-genetique-material-cost').textContent = formatNumber(genetiqueMaterialCost);
 
-    const materialPriceGenetique = genetiqueMaterialCost * weight;
-    document.getElementById('display-material-price-genetique').textContent = formatNumber(materialPriceGenetique);
+            const materialPriceGenetique = genetiqueMaterialCost * weight;
+            document.getElementById('display-material-price-genetique').textContent = formatNumber(materialPriceGenetique);
 
-    const gstGenetique = materialPriceGenetique * GST_PERCENTAGE;
-    document.getElementById('display-gst-genetique').textContent = formatNumber(gstGenetique);
+            const gstGenetique = materialPriceGenetique * GST_PERCENTAGE;
+            document.getElementById('display-gst-genetique').textContent = formatNumber(gstGenetique);
 
-    const vpcsToGenetique = materialPriceGenetique + gstGenetique;
-    document.getElementById('display-vpcs-to-genetique').textContent = formatNumber(vpcsToGenetique);
+            const vpcsToGenetique = materialPriceGenetique + gstGenetique;
+            document.getElementById('display-vpcs-to-genetique').textContent = formatNumber(vpcsToGenetique);
 
-    document.getElementById('display-customs-tax').textContent = '0.00'; // Not applicable
-}
+            document.getElementById('display-customs-tax').textContent = '0.00'; // Not applicable
+        }
 
     };
 
