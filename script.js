@@ -92,6 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const genetiqueToHetero = materialPriceGst + tcs;
             document.getElementById('display-genetique-to-hetero').textContent = formatNumber(genetiqueToHetero);
 
+            document.getElementById('display-customs-tax').textContent = '0.00'; // Not applicable
+            document.getElementById('id="display-pcb-charges"').textContent = '1.00'; // Not applicable
+
             const heteroPlusPCB = HETERO_MATERIAL_RATE + PCB_CHARGES;
             document.getElementById('display-material-cost').textContent = formatNumber(heteroPlusPCB);
 
