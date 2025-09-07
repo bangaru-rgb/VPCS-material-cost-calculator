@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const genetiqueToHetero = materialPriceGst + tcs;
             document.getElementById('display-genetique-to-hetero').textContent = formatNumber(genetiqueToHetero);
-
+            document.getElementById('display-pcb-charges').textContent = '2.00';
             const genetiqueMaterialCost = HETERO_MATERIAL_RATE + customsTax + PCB_CHARGES + APEMCL_CHARGES;
             document.getElementById('display-genetique-material-cost').textContent = formatNumber(genetiqueMaterialCost);
 
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('display-genetique-to-hetero').textContent = formatNumber(genetiqueToHetero);
 
             document.getElementById('display-customs-tax').textContent = '0.00'; // Not applicable
-            document.getElementById('id="display-pcb-charges"').textContent = '1.00'; // Not applicable
+            document.getElementById('display-pcb-charges').textContent = '1.00';
 
             const heteroPlusPCB = HETERO_MATERIAL_RATE + PCB_CHARGES;
             document.getElementById('display-material-cost').textContent = formatNumber(heteroPlusPCB);
