@@ -125,12 +125,12 @@ h1 {
     text-align: right;
     font-family: 'Roboto Mono', monospace; /* Monospaced font for values */
     font-size: 1em;
-    color: var(--primary-color);
+    color: #fff; /* Changed font color to white */
 }
 
 .table-row .comments {
     font-size: 0.9em;
-    color: #666;
+    color: #fff; /* Changed font color to white */
 }
 
 /* Specific styling for the 'Value' column to ensure right alignment */
