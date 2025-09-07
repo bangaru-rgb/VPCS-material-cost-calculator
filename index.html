@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Material Cost Calculator</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Responsive tweaks -->
+    <link rel="stylesheet" href="responsive.css">
 </head>
 <body>
     <div class="container">
         <h1>Material Cost Calculation</h1>
 
         <div class="input-section">
-    <label for="mode-selector">Select Mode:</label>
-    <select id="mode-selector">
+    <label for="mode-selector">Material:</label>
+    <select id="mode-selector" style="width: 100%; padding: 8px; font-size: 1rem;">
         <option value="etp">ETP</option>
         <option value="stripper">Stripper</option>
     </select>
 
-    <label for="weight">ETP Weight:</label>
-    <input type="number" id="weight" value="26000" min="0" step="1" placeholder="Enter weight">
+    <label for="weight">Weight:</label>
+    <input type="number" id="weight" value="26000" min="0" step="1" placeholder="Enter weight" style="width: 100%; padding: 8px; font-size: 1rem;">
 </div>
+
+
 
 
         <div class="results-table">
