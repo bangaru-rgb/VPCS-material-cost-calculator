@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Material Cost Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Responsive tweaks -->
+    <link rel="stylesheet" href="responsive.css">
+
+    <style>
+        input[type="number"],
+        select {
+            height: 40px;
+            padding: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+    </style>
+
+
 </head>
+
 <body>
     <div class="container">
         <h1>Material Cost Calculation</h1>
 
         <div class="input-section">
-            <label for="weight">ETP Weight:</label>
-            <input type="number" id="weight" value="26000" min="0" step="1" placeholder="Enter weight">
+            <label for="mode-selector">Material:</label>
+            <select id="mode-selector" style="width: 100%; padding: 8px; font-size: 1rem;">
+                <option value="select">Select</option>
+                <option value="etp">ETP</option>
+                <option value="stripper">Stripper</option>
+
+            </select>
+
+            <label for="weight">Weight:</label>
+            <input type="number" id="weight" value="" min="0" step="1" placeholder="Enter weight"
+                style="width: 100%; padding: 8px; font-size: 1rem; text-align: left">
         </div>
+
+
+
 
         <div class="results-table">
             <div class="table-row header">
@@ -23,21 +51,21 @@
             </div>
 
             <div class="table-row">
-                <div class="component">ETP Weight</div>
+                <div class="component">Total Weight</div>
                 <div class="value" id="display-etp-weight"></div>
                 <div class="comments">Total weight of the material.</div>
             </div>
 
             <div class="table-row">
                 <div class="component">Hetero material Rate</div>
-                <div class="value">18.00</div>
+                <div class="value" id="display-hetero-rate"></div>
                 <div class="comments">Rate per unit for Hetero material.</div>
             </div>
 
             <div class="table-row">
                 <div class="component">Customs Tax</div>
                 <div class="value" id="display-customs-tax"></div>
-                <div class="comments">11% of Hetero Material Rate.</div>
+                <div class="comments">11% of Hetero Material Rate for ETP, 0% for Stripper.</div>
             </div>
 
             <div class="table-row">
@@ -46,7 +74,7 @@
                 <div class="comments">Hetero rate + Customs tax</div>
             </div>
 
-            <div class="table-row highlight">
+            <div class="table-row">
                 <div class="component">Material Price @Hetero</div>
                 <div class="value" id="display-material-price-hetero"></div>
                 <div class="comments">Material cost * Weight</div>
@@ -71,15 +99,15 @@
             </div>
 
             <div class="table-row highlight">
-                <div class="component">Genetique to Hetero</div>
+                <div class="highlight">Genetique to Hetero</div>
                 <div class="value" id="display-genetique-to-hetero"></div>
                 <div class="comments">Material price+GST+TCS</div>
             </div>
 
             <div class="table-row">
                 <div class="component">PCB Charges</div>
-                <div class="value">2.00</div>
-                <div class="comments">Additional charges for PCB.</div>
+                <div class="value" id="display-pcb-charges"></div>
+                <div class="comments">PCB Charges ETP 2.00, Stripper 1.00</div>
             </div>
 
             <div class="table-row">
@@ -94,7 +122,7 @@
                 <div class="comments">Hetero rate + Customs tax + PCB charges + MPCL Charges</div>
             </div>
 
-            <div class="table-row highlight">
+            <div class="table-row">
                 <div class="component">Material Price @ Genetique</div>
                 <div class="value" id="display-material-price-genetique"></div>
                 <div class="comments">Genetique material cost * Weight</div>
@@ -107,7 +135,7 @@
             </div>
 
             <div class="table-row highlight">
-                <div class="component">VPCS to Genetique</div>
+                <div class="highlight">VPCS to Genetique</div>
                 <div class="value" id="display-vpcs-to-genetique"></div>
                 <div class="comments">Material Price @ Genetique + GST</div>
             </div>
@@ -116,4 +144,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
