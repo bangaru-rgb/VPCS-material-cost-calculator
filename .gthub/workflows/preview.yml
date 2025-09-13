@@ -22,7 +22,9 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy preview
-        uses: chvmvd/build-deploy-and-preview-action@v1.2.0
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          type: vite  # or static, react, etc.
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          destination_branch: gh-pages
